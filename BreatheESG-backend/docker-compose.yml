@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Nayeem@234
+      POSTGRES_DB: breathe_esg # <-- Updated to match your exact DB name
+    ports:
+      - "5432:5432"
+
+  backend:
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/breathe_esg # <-- Updated here too
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=Nayeem@234
+
+  frontend:
+    build: ../../breathe-esg-frontend-2/breathe-esg-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+
+
