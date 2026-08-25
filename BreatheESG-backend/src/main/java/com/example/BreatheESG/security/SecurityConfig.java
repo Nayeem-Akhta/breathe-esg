@@ -64,8 +64,7 @@ public class SecurityConfig {
         CorsConfiguration configuration = new CorsConfiguration();
 
         // ADD YOUR VERCEL URL HERE (Make sure there is no trailing slash at the end of the URL)
-        configuration.setAllowedOrigins(List.of("http://localhost:3000", "https://breathe-esg-frontend-alpha.vercel.app"));
-
+        configuration.setAllowedOriginPatterns(List.of("http://localhost:3000", "https://*.vercel.app"));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         // You might want to temporarily allow all headers just to be safe during deployment:
         configuration.setAllowedHeaders(List.of("*"));
