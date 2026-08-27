@@ -1,14 +1,13 @@
 import axios from 'axios';
 
-// 1. Create the Axios instance
+// HARDCODED BYPASS: We are forcing React to use this exact clean URL.
 const api = axios.create({
-    baseURL: process.env.REACT_APP_API_BASE_URL || 'http://localhost:8080/api',
+    baseURL: 'https://breathe-esg-backend-p7qt.onrender.com/api',
     headers: {
         'Content-Type': 'application/json',
     },
 });
 
-// 2. Add the interceptor to attach the JWT token
 api.interceptors.request.use(
     (config) => {
         const token = localStorage.getItem('accessToken');
@@ -22,5 +21,4 @@ api.interceptors.request.use(
     }
 );
 
-// 3. CRITICAL: Export it as the default module
 export default api;
